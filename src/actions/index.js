@@ -38,8 +38,8 @@ export const loginUser = ({ email, password }) => {
 };
 
 const loginUserFail = (dispatch) => {
-  dispatch({ type: LOGIN_USER_FAIL, payload: 'error' })
-}
+  dispatch({ type: LOGIN_USER_FAIL, payload: 'Authentication Failed' });
+};
 
 const loginUserSucess = (dispatch, user) => {
   dispatch({ type: LOGIN_USER_SUCCESS, payload: user });

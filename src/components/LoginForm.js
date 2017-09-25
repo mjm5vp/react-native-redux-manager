@@ -76,7 +76,7 @@ const styles = {
     alignSelf: 'center',
     color: 'red'
   }
-}
+};
 
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading } = auth;

@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import { Picker, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input, Button } from './common';
-import { employeeUpdate } from '../actions/EmployeeActions';
+import { employeeUpdate, employeeCreate } from '../actions/EmployeeActions';
 
 class EmployeeCreate extends Component {
+
+  onButtonPress() {
+    const { name, phone, shiftDay } = this.props;
+
+    this.props.employeeCreate({ name, phone, shiftDay: shiftDay || 'Monday' });
+  }
+
   render() {
     return (
       <Card>
@@ -32,18 +39,18 @@ class EmployeeCreate extends Component {
           selectedValue={this.props.shiftDay}
           onValueChange={day => this.props.employeeUpdate({ prop: 'shiftDay', value: day })}
         >
-          <Picker.item label='Monday' value='Monday' />
-          <Picker.item label='Tuesday' value='Tuesday' />
-          <Picker.item label='Wednesday' value='Wednesday' />
-          <Picker.item label='Thursday' value='Thursday' />
-          <Picker.item label='Friday' value='Friday' />
-          <Picker.item label='Saturday' value='Saturday' />
-          <Picker.item label='Sunday' value='Sunday' />
+          <Picker.Item label='Monday' value='Monday' />
+          <Picker.Item label='Tuesday' value='Tuesday' />
+          <Picker.Item label='Wednesday' value='Wednesday' />
+          <Picker.Item label='Thursday' value='Thursday' />
+          <Picker.Item label='Friday' value='Friday' />
+          <Picker.Item label='Saturday' value='Saturday' />
+          <Picker.Item label='Sunday' value='Sunday' />
         </Picker>
       </CardSection>
 
       <CardSection>
-        <Button>
+        <Button onPress={this.onButtonPress.bind(this)}>
           Create
         </Button>
       </CardSection>
@@ -66,6 +73,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  employeeUpdate
+  employeeUpdate,
+  employeeCreate
 }
 )(EmployeeCreate);
